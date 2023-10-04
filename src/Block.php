@@ -122,6 +122,27 @@ class Block implements GroupableInterface {
     protected $renderer;
 
     /**
+     * The style to be enqueued with the block.
+     *
+     * @var string
+     */
+    protected $enqueue_style = '';
+
+    /**
+     * The script to be enqueued with the block.
+     *
+     * @var string
+     */
+    protected $enqueue_script = '';
+
+    /**
+     * The assets to be enqueued with the block.
+     *
+     * @var Callable|null
+     */
+    protected $enqueue_assets;
+
+    /**
      * Constructor
      *
      * @param string $title Block title.
@@ -501,6 +522,71 @@ class Block implements GroupableInterface {
     }
 
     /**
+     * Set the style to be enqueued with the block.
+     *
+     * @param string $enqueue_style The style to be enqueued.
+     * @return self
+     */
+    public function set_enqueue_style( string $enqueue_style ) : self {
+        $this->enqueue_style = $enqueue_style;
+
+        return $this;
+    }
+
+    /**
+     * Get the style to be enqueued with the block.
+     *
+     * @return string
+     */
+    public function get_enqueue_style() : string {
+        return $this->enqueue_style;
+    }
+
+    /**
+     * Set the script to be enqueued with the block.
+     *
+     * @param string $enqueue_script The script to be enqueued.
+     * @return self
+     */
+    public function set_enqueue_script( string $enqueue_script ) : self {
+        $this->enqueue_script = $enqueue_script;
+
+        return $this;
+    }
+
+    /**
+     * Get the script to be enqueued with the block.
+     *
+     * @return string
+     */
+    public function get_enqueue_script() : string {
+        return $this->enqueue_script;
+    }
+
+    /**
+     * Set the assets to be enqueued with the block.
+     *
+     * @param Callable $enqueue_assets The assets to be enqueued.
+     * @return self
+     */
+    public function set_enqueue_assets( Callable $enqueue_assets ) : self {
+        $this->enqueue_assets = $enqueue_assets;
+
+        return $this;
+    }
+
+    /**
+     * Get the assets to be enqueued with the block.
+     *
+     * @return Callable|null
+     */
+    public function get_enqueue_assets() : ?Callable {
+        $test = $this->enqueue_assets;
+
+        return $this->enqueue_assets;
+    }
+
+    /**
      * Registers the ACF Gutenberg block
      *
      * @return array The registered block data.
@@ -546,6 +632,9 @@ class Block implements GroupableInterface {
             'align'           => $this->get_align(),
             'supports'        => $this->get_supports(),
             'styles'          => $this->get_styles(),
+            'enqueue_style'   => $this->get_enqueue_style(),
+            'enqueue_script'  => $this->get_enqueue_script(),
+            'enqueue_assets'  => $this->get_enqueue_assets(),
         ];
 
         if ( ! empty( $this->get_post_types() ) ) {
