@@ -581,8 +581,6 @@ class Block implements GroupableInterface {
      * @return Callable|null
      */
     public function get_enqueue_assets() : ?Callable {
-        $test = $this->enqueue_assets;
-
         return $this->enqueue_assets;
     }
 
