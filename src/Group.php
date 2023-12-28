@@ -519,7 +519,7 @@ class Group implements GroupableInterface {
                 \acf_add_local_field_group( $exported );
 
                 $this->registered = true;
-            }, 15 );
+            }, apply_filters( 'codifier/groups/register_priority', 15, $this->get_key() ) );
         }
     }
 
