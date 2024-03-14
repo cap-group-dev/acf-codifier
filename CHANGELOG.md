@@ -6,6 +6,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 [Unreleased]
 
+## [1.39.1]
+
+### Fixed
+- Fix PHP 8.2 deprecations (no dynamic properties, string interpolation {$var} instead of ${var}).
+- Replace deprecated acf_esc_attr_e with acf_esc_attrs.
+- Use shorthand array notation.
+
+## [1.39.0]
+
+### Added
+- Add support for block parent attribute.
+
 ## [1.38.4]
 
 - Fix previous tag pointing to earlier commit.
@@ -465,7 +477,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [1.2.4] - 2018-01-31
 
 ### Fixed
-- Fixed a bug that occured after the change made in 1.2.3.
+- Fixed a bug that occurred after the change made in 1.2.3.
 
 ## [1.2.3] - 2018-01-30
 

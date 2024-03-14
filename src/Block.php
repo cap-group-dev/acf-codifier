@@ -115,6 +115,15 @@ class Block implements GroupableInterface {
     protected $styles = [];
 
     /**
+     * An array of parent blocks for the block.
+     *
+     * @see https://developer.wordpress.org/block-editor/developers/block-api/block-registration/#parent-optional
+     *
+     * @var array|null
+     */
+    protected $parent = null;
+
+    /**
      * The renderer for this block.
      *
      * @var Renderer
@@ -356,7 +365,7 @@ class Block implements GroupableInterface {
     }
 
     /**
-     * Setter for the post_ ypes.
+     * Setter for the post_types.
      *
      * @param array $post_types The post types to set.
      * @return self
@@ -468,6 +477,27 @@ class Block implements GroupableInterface {
      */
     public function get_styles() : array {
         return $this->styles;
+    }
+
+    /**
+     * Setter for the parent of the block.
+     *
+     * @param array|null $parent Array of parent blocks or null.
+     * @return self
+     */
+    public function set_parent( ?array $parent ) : self {
+        $this->parent = $parent;
+
+        return $this;
+    }
+
+    /**
+     * Getter for the parent of the block.
+     *
+     * @return array|null
+     */
+    public function get_parent() : ?array {
+        return $this->parent;
     }
 
     /**
@@ -630,6 +660,7 @@ class Block implements GroupableInterface {
             'align'           => $this->get_align(),
             'supports'        => $this->get_supports(),
             'styles'          => $this->get_styles(),
+            'parent'          => $this->get_parent(),
             'enqueue_style'   => $this->get_enqueue_style(),
             'enqueue_script'  => $this->get_enqueue_script(),
             'enqueue_assets'  => $this->get_enqueue_assets(),
